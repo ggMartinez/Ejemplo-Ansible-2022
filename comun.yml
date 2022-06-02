@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Setear Hostname
+      hostname: name={{ inventory_hostname }}
+
+    - name: Instalar repositorio epel
+      yum:
+        name:
+          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+
+    - name: Instalar paquetes comunes
+      yum:
+        name:
+          - git
+          - vim
+          - mlocate
+          - wget
+
+
+
+    - name: Configurar zona horaria
+      timezone:
+        name: America/Montevideo
+
+
+  become: true
+  become_user: root

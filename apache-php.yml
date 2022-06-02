@@ -1,0 +1,19 @@
+---
+- hosts: ServidoresWeb 
+  tasks:
+
+    - name: Instalar apache y php
+      yum:
+        name:
+          - httpd
+          - php
+          - php-mysql
+
+    - name: Iniciar Apache
+      systemd:
+        state: started
+        name: httpd
+        enabled: yes
+
+  become: true
+  become_user: root
